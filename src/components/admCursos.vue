@@ -12,6 +12,7 @@
       <th scope="col">Estado</th>
       <th scope="col">Imagen</th>
       <th scope="col">Edición</th>
+      <th><button>Agregar</button></th>
     </tr>
   </thead>
   <tbody>
@@ -25,7 +26,8 @@
       <td>{{ data.inscritos }}</td>
       <td>{{ data.estado }}</td>
       <td>{{ data.img }}</td>
-      <td><i><button @click="exit()">Editar</button></i></td>
+      <!-- @click="editarCurso()" @click="dekCurso()"-->
+      <td><i><button>Editar</button></i><button>Eliminar</button></td>
     </tr>
   </tbody>
 </table>
