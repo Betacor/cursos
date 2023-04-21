@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { auth } from "@/auth/authLogin";
+import { auth } from "@/services/auth.service";
 // import { router } from "./router/router.service";
 
 export default {
@@ -31,6 +31,7 @@ export default {
           this.loginForm.password
         )
         .then(function (fbUser) {
+          console.log('usuario logeado exitosamente')
           console.log('Respuesta ',fbUser);
         })
         .catch((err) => {
