@@ -1,5 +1,5 @@
 <template>
-Este es el home
+    <Cards/>
 </template>
   
   
