@@ -5,6 +5,7 @@
     <router-link to="/login">Login</router-link> |
     <router-link to="/admin">Administrar</router-link>|
     <router-link to="/registerView">Registrar</router-link>
+    <router-link to="/cursosPage">mostrarCursos</router-link>
   </nav>
   <router-view/>
 </template>

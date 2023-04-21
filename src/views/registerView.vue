@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     registerUser() {
-        auth
+       auth
         .createUserWithEmailAndPassword(
           this.registerForm.email,
           this.registerForm.password
