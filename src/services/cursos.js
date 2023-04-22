@@ -1,4 +1,4 @@
-export class cursosService{
+export class Courses{
     static courses = [
         {
             "codigo": "0001",

@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
-import { cursosService } from '@/services/temp'
+import { Courses } from '@/services/cursos'
 
 
 export default createStore({
   state: {
-    cursos: cursosService.getAllCourses()
+    cursos: Courses.getAllCourses()
   },
   getters: {
   },
