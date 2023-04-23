@@ -1,5 +1,7 @@
 <template>
+    <NavBar/>
     <Cards/>
+    <Footer/>
 </template>
   
   
@@ -7,12 +9,14 @@
   // @ is an alias to /src
   import NavBar from '../components/NavBar.vue'
   import Footer from '../components/Footer.vue'
+  import Cards from '../components/Cards.vue'
   
   export default {
-  name: "Home-Root",
+  name: "HomeView",
   components:{
     NavBar,
-    Footer
+    Footer,
+    Cards
   }
   }
   </script>

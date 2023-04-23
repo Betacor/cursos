@@ -10,11 +10,11 @@
             <div class="d-flex ms-auto me-3">
                 <nav>
                     <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
-                        <router-link class="nav-link px-3" to="/">Inicio</router-link>
-                        <router-link class="nav-link px-3" to="">Cursos</router-link>
-                        <ShowCards></ShowCards>
-                        <!-- <router-link class="nav-link px-3" to="">Login</router-link>
-                        <FormLogin></FormLogin> -->
+                        
+                        <router-link class="nav-link px-3" to="/">Cursos</router-link>
+                        
+                        <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
+                        
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Logout
                         </button>
@@ -67,6 +67,7 @@
         font-size: 16px;
         margin: 0%;
         font-family: 'Montserrat', sans-serif;
+       
     }
     
     .list-item{

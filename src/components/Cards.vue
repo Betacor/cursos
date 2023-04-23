@@ -1,5 +1,5 @@
 <template>
-
+	<NavBar/>  
 		<h1>Cursos</h1>
     <div class="container">
 			<div class="row g-3">
@@ -15,10 +15,13 @@
 				</div>
 			</div>
     </div>
+	<Footer/>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import NavBar from "@/components/NavBar.vue"
+import Footer from "@/components/Footer.vue"
 
 export default {
 computed: {

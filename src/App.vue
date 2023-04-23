@@ -1,32 +1,7 @@
-<template>
-  <nav>
-
-
-    
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/login">Login</router-link> |
-    <router-link to="/admin">Administrar</router-link>
-  </nav>
+<template>  
   <router-view/>
-<Footer/>
-  
 </template>
 
-<script>
-
-import NavBar from "@/components/NavBar.vue"
-import Footer from "@/components/Footer.vue"
-
-export default {
-  name: 'App',
-  components: {
-    NavBar,
-    Footer
-  }
-};
-
-</script>
 
 <style>
 #app {
@@ -43,7 +18,7 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: white;
+  color: black;
 }
 
 nav a.router-link-exact-active {

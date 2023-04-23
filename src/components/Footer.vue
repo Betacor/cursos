@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <img src="../assets/logo.png" alt="" width="100">
+        <img src="../assets/logoo.png" alt="" width="100">
      
         <!-- <img src="../assets/logo.png" width="200"  alt=""> -->
     </footer>
@@ -14,7 +14,7 @@
     
     <style>
     footer {
-    background-color: #82daf0;
+    background-color: #ed8e1e;
     margin-top: 5em;
     padding: 50px;
     text-align: center;
