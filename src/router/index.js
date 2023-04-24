@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import registerView from '../views/registerView.vue'
 import cursosPage from '../views/cursosPage.vue'
+import loginPage from '../views/LoginView.vue'
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     component: cursosPage
   },
   {
+    path: '/loginPage',
+    name: 'loginPage',
+    component: loginPage
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
@@ -31,12 +37,8 @@ const routes = [
     path:'/admin',
     name: 'admin',
     component: () => import(/* webpackChunkName: "admin" */ '../components/admCursos.vue')
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
   }
+
 ]
 
 const router = createRouter({

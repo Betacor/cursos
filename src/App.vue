@@ -2,14 +2,25 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/login">Login</router-link> |
+    <router-link to="/loginPage">Login</router-link> |
     <router-link to="/admin">Administrar</router-link>|
     <router-link to="/registerView">Registrar</router-link>
     <router-link to="/cursosPage">mostrarCursos</router-link>
+    <logout></logout>
   </nav>
   <router-view/>
 </template>
 
+<script>
+import logout from '@/components/LogoutPage.vue';
+
+  export default {
+
+    components:{
+      logout
+    }
+  }
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
