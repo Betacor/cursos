@@ -1,4 +1,5 @@
 <template>
+  <NavBar/>
   <table class="table table-striped">
   <thead>
     <tr>
@@ -31,16 +32,23 @@
     </tr>
   </tbody>
 </table>
+<Footer/>
 </template>
 
 <script>
+import NavBar from '../components/NavBar.vue'
 import { mapState } from 'vuex';
+import Footer from '../components/Footer.vue';
 
 export default {
     data(){
         return{
             items: []
         }
+    },
+    components: {
+      NavBar,
+      Footer
     },
     computed: {
 		...mapState(['cursos']),

@@ -6,4 +6,6 @@ import store from './store'
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
+
+
 createApp(App).use(store).use(router).mount('#app')
