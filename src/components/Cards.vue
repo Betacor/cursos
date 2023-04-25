@@ -24,9 +24,19 @@ import NavBar from "@/components/NavBar.vue"
 import Footer from "@/components/Footer.vue"
 
 export default {
+
 computed: {
-		...mapState(['cursos']),
-	}
+    ...mapState(['cursos']),
+    ...mapState(['nombre'])
+},
+methods: {
+    ...mapMutations(['extraer']),
+    
+
+},
+mounted(){
+        this.extraer();
+    }
 }
 
 </script>
@@ -34,39 +44,39 @@ computed: {
 <style scoped>
 
 .card {
-	/* border: 0; */
-	margin-right: 1em;
+/* border: 0; */
+margin-right: 1em;
 }
 
 .card-body {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	border: 1px solid rgba(226, 223, 223, 0.488);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border: 1px solid rgba(226, 223, 223, 0.488);
 
 }
 
 .card img {
-	max-height: 100px;
-	width: auto;
-	overflow: hidden;
-	object-fit: scale-down;
-	margin: 1em;
+max-height: 100px;
+width: auto;
+overflow: hidden;
+object-fit: scale-down;
+margin: 1em;
 }
 
 h2 {
-	font-size: 1rem;
-	font-weight: 700;
+font-size: 1rem;
+font-weight: 700;
 }
 
 .btn {
-	background-color: rgb(39, 39, 39) !important;
-	border: 0 !important;
+background-color: rgb(39, 39, 39) !important;
+border: 0 !important;
 }
 
 .btn:hover {
-	cursor: pointer;
-	color: #00f3ae;
-	background-color: rgb(48, 48, 48) !important;
+cursor: pointer;
+color: #00f3ae;
+background-color: rgb(48, 48, 48) !important;
 }
 </style>
