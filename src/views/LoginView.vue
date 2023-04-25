@@ -1,5 +1,4 @@
 <template>
-  <NavBar/>
     <div id="app">
     <input name="username" type="text" v-model.trim="loginForm.email" />
     <br />
