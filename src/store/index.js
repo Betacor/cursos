@@ -1,12 +1,11 @@
 import { createStore } from 'vuex'
-import { Courses } from '@/services/cursos'
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/auth.service";
 
 
 export default createStore({
   state: {
-    cursos:Courses.getAllCourses(),
+    cursos:[],
     nombre:'',
     usuarioConectado: ''
   },

@@ -37,6 +37,7 @@
 <script>
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/auth.service";
+import NavBar from './NavBar.vue';
 
 export default {
   data() {
@@ -44,6 +45,9 @@ export default {
         nombre:'',
         cursos: []
     };
+  },
+  components:{
+    NavBar
   },
   mounted(){
     this.extraer();
