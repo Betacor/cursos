@@ -122,10 +122,10 @@
     },
     //reenvio hacia el home
     redirectToHomePage() {
-        this.$router.push('/');
+        this.$router.push('/homeView');
     },
     redirectToLogin() {
-        this.$router.push('/loginPage');
+        this.$router.push('/');
     },
       //reenvio hacia registrar
     goToRegister(){

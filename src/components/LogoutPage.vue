@@ -36,7 +36,7 @@ export default {
       try {
         await auth.signOut();
         this.$store.state.estado = true;
-        this.$router.push('/loginPage'); // redirigir al usuario al login después del cierre de sesión
+        this.$router.push('/'); // redirigir al usuario al login después del cierre de sesión
       } catch (error) {
         console.log(error);
       }

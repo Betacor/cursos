@@ -11,7 +11,7 @@
                 <nav>
                     <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                         
-                        <router-link class="nav-link px-3" to="/">Cursos</router-link>
+                        <router-link class="nav-link px-3" to="/homeView">Cursos</router-link>
                         
                         <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
                         
