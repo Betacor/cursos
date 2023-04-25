@@ -29,11 +29,11 @@ methods: {
     
 },
 mounted(){
-    console.log(this.loaded)
+
     if(!this.loaded){
         this.extraer();
     }
-    console.log(this.loaded)
+
     }
 }
 </script>

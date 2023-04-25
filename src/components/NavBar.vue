@@ -11,45 +11,30 @@
                 <nav>
                     <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                         
-                        <router-link class="nav-link px-3" to="/">Cursos</router-link>
+                        <router-link class="nav-link px-3" to="/homeView">Cursos</router-link>
                         
                         <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
                         
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Logout
-                        </button>
+                        <logout></logout>
                         <!-- <p class="mb-0">{{usuarioConectado}}</p> -->
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ¿Esta seguro que desea salir?
-          <p>{{usuarioConectado}}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-no" data-bs-dismiss="modal">No</button>
-          <button type="button" v-on:click="logout" class="btn btn-si" data-bs-dismiss="modal">Si</button>
-        </div>
-      </div>
-    </div>
-    </div>
-        </template>
+</template>
         
         <script>
     // import FormLogin from './FormLogin.vue';
     // import ShowCards from './ShowCards.vue';
+    import logout from '@/components/LogoutPage.vue'
+
     export default {
-        name: 'NavBar'
+        name: 'NavBar',
+        components:{
+            logout
+        }
+
         }
     
     </script>

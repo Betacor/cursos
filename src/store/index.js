@@ -1,12 +1,11 @@
 import { createStore } from 'vuex'
-import { Courses } from '@/services/cursos'
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/auth.service";
 
 
 export default createStore({
   state: {
-    cursos:Courses.getAllCourses(),
+    cursos:[],
     nombre:'',
     usuarioConectado: ''
   },
@@ -26,7 +25,6 @@ export default createStore({
 			console.log(querySnapshot);
 			state.cursos = querySnapshot.docs.map(doc => doc.data());
 			console.log(state.cursos);
-			this.$store.state.loaded = true;
 		},
 		mostrarCurso(){
 			state.cursos.forEach((element)=>{

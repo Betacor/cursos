@@ -1,8 +1,16 @@
 <template>  
   <router-view/>
 </template>
+<script>
+import logout from '@/components/LogoutPage.vue';
 
+  export default {
 
+    components:{
+      logout
+    }
+  }
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

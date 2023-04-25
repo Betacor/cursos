@@ -1,20 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-
+import homeView from '../views/HomeView.vue'
+import registerView from '../views/registerView.vue'
+import loginPage from '../views/LoginView.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'loginPage',
+    component: loginPage
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/registerView',
+    name: 'registerView',
+    component: registerView
+  },
+  {
+    path: '/homeView',
+    name: 'homeView',
+    component: homeView
   },
   {
     path:'/admin',
@@ -22,9 +25,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "admin" */ '../components/admCursos.vue')
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+    path:'/addCourse',
+    name: 'addCourse',
+    component: () => import(/* webpackChunkName: "addCourse" */ '../components/addModal.vue')
+  },
+  {
+    path:'/editCourse',
+    name: 'editCourse',
+    component: () => import(/* webpackChunkName: "editCourse" */ '../components/editModal.vue')
+  },
+  {
+    path:'/delCourse',
+    name: 'delCourse',
+    component: () => import(/* webpackChunkName: "delCourse" */ '../components/delModal.vue')
   }
   
 ]
