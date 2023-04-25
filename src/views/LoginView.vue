@@ -32,7 +32,7 @@ export default {
     return {
       loginForm: {
         email: "",
-        password: ""
+        password: "",
       },
       error: '',
       manage: false,
@@ -87,9 +87,25 @@ export default {
         });
       }
     },
-    showAlert() {
+    showAlert(action) {
+      if(action==='login'){
+        Swal.fire({
+          title: 'Iniciado sesión',
+          text: 'You clicked the button!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+          showCancelButton: false
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.redirectToHomePage();
+          }
+        });
+      }else if(action==='logout'){
       Swal.fire({
-        title: 'Iniciado sesión',
+        title: 'sesion cerrada',
         text: 'You clicked the button!',
         icon: 'success',
         confirmButtonText: 'OK',
@@ -99,13 +115,17 @@ export default {
         showCancelButton: false
       }).then((result) => {
         if (result.isConfirmed) {
-          this.redirectToHomePage();
+          this.redirectToLogin();
         }
       });
+    } 
   },
   //reenvio hacia el home
   redirectToHomePage() {
       this.$router.push('/');
+  },
+  redirectToLogin() {
+      this.$router.push('/loginPage');
   },
     //reenvio hacia registrar
     goToRegister(){
@@ -145,15 +165,18 @@ export default {
       console.log("El usuario ha iniciado sesión:", user);
       // Cargar información del usuario en tu store o en tus datos locales
       this.$store.commit('cargarUsuario', user.email);
-      this.showAlert();
+      this.$store.state.estado = false;
+      this.showAlert('login');
      
-    } else {
-      // Usuario ha cerrado sesión
-      console.log("El usuario ha cerrado sesión");
-      // Limpiar información del usuario en tu store o en tus datos locales
-      this.$store.commit('limpiarUsuario')
-      // Redirigir a la página de inicio de sesión
-      router.push('/loginPage');
+    }else {
+      if(this.$store.state.estado === true){
+        // Usuario ha cerrado sesión
+        console.log("El usuario ha cerrado sesión");
+        // Limpiar información del usuario en tu store o en tus datos locales
+        this.$store.commit('limpiarUsuario')
+        // Redirigir a la página de inicio de sesión
+        this.showAlert('logout');
+      }
     }
   });
 },
