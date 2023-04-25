@@ -10,10 +10,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Logout</h1>
+        <h1 class="modal-title text-secondary fs-5" id="staticBackdropLabel">Logout</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-secondary">
         ¿Estas seguro(a) que deseas salir de la sesión?
       </div>
       <div class="modal-footer">

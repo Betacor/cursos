@@ -26,7 +26,6 @@ export default createStore({
 			console.log(querySnapshot);
 			state.cursos = querySnapshot.docs.map(doc => doc.data());
 			console.log(state.cursos);
-			this.$store.state.loaded = true;
 		},
 		mostrarCurso(){
 			state.cursos.forEach((element)=>{
