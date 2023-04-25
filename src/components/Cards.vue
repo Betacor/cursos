@@ -1,33 +1,41 @@
 <template>
-		<h1>Cursos</h1>
-    <div class="container">
-			<div class="row g-3">
-        <div v-for="fila in cursos" :key="fila.codigo" class="card col-md-3" style="width: 18rem;">
-          <img class="card-img-top" :src="fila.img" alt="Card image cap">
-          <div class="card-body">
-						<h2 class="card-title">Curso {{ fila.nombre }}</h2>
-						<p class="card-text">Precio: ${{ parseInt(fila.precio).toLocaleString('es') }}</p>
-						<p class="card-text">Duracion:{{ fila.duracion }}</p>
-						<p class="card-text">Cupos:{{ fila.cupos }}</p>
-						<a href="#" class="btn btn-primary">Inscribir Curso</a>
-          </div>
-				</div>
-			</div>
+  <h1>Cursos</h1>
+  <div class="container">
+    <div class="row g-3">
+      <div v-for="item in cursos" :key="item" class="card col-md-3" style="width: 18rem;">
+        <img class="card-img-top" :src="item.img" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">Curso {{ item.nombre }}</h2>
+          <p class="card-text">Precio: ${{ parseInt(item.precio).toLocaleString('es') }}</p>
+          <p class="card-text">Duracion:{{ item.duracion }}</p>
+          <p class="card-text">Cupos:{{ item.cupos }}</p>
+          <a href="#" class="btn btn-primary">Inscribir Curso</a>
+        </div>
+      </div>
     </div>
-	<Footer/>
+  </div>
+
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import NavBar from "@/components/NavBar.vue"
-import Footer from "@/components/Footer.vue"
-
+import { mapState, mapMutations } from 'vuex';
 export default {
 computed: {
-		...mapState(['cursos']),
-	}
+    ...mapState(['cursos']),
+    ...mapState(['nombre'])
+},
+methods: {
+    ...mapMutations(['extraer']),
+    
+},
+mounted(){
+    console.log(this.loaded)
+    if(!this.loaded){
+        this.extraer();
+    }
+    console.log(this.loaded)
+    }
 }
-
 </script>
 
 <style scoped>
