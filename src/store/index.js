@@ -8,7 +8,9 @@ export default createStore({
   state: {
     cursos:Courses.getAllCourses(),
     nombre:'',
-    usuarioConectado: ''
+    usuarioConectado: '',
+    courses: [],
+    loaded: false
   },
   getters: {
   },
@@ -22,26 +24,34 @@ export default createStore({
       //limpia el usuario conectado
     },
     async extraer(state) {
-       
         const querySnapshot = await getDocs(collection(db, "cursos"));
         console.log(querySnapshot)
         querySnapshot.forEach((doc) => {
         console.log(doc.id, " => ", doc.data().nombre);
             state.cursos.push(doc.data());
-
         });
-
         console.log(state.cursos);
         },
         mostrarCurso(){
             state.cursos.forEach((element)=>{
-
                 console.log(element)
             })
-        }
-  },
-  actions: {
-  },
-  modules: {
-  }
+        },
+        addCourse(state, { id, data }) {
+          //insercion de los cursos en el arreglo
+          state.courses.push({
+            id,
+            nombre: data.nombre,
+            precio: data.precio,
+            duracion: data.duracion,
+            cupos: data.cupos,
+            img: data.img
+          });
+          console.log(state.courses)
+        },
+  // actions: {
+  // },
+  // modules: {
+  // }
+}
 })
