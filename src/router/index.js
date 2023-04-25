@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import registerView from '../views/registerView.vue'
-import cursosPage from '../views/cursosPage.vue'
 import loginPage from '../views/LoginView.vue'
 
 const routes = [
@@ -14,11 +13,6 @@ const routes = [
     path: '/registerView',
     name: 'registerView',
     component: registerView
-  },
-  {
-    path: '/cursosPage',
-    name: 'cursosPage',
-    component: cursosPage
   },
   {
     path: '/loginPage',
@@ -38,7 +32,7 @@ const routes = [
     name: 'admin',
     component: () => import(/* webpackChunkName: "admin" */ '../components/admCursos.vue')
   }
-
+  
 ]
 
 const router = createRouter({
