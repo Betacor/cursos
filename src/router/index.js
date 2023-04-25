@@ -23,6 +23,21 @@ const routes = [
     path:'/admin',
     name: 'admin',
     component: () => import(/* webpackChunkName: "admin" */ '../components/admCursos.vue')
+  },
+  {
+    path:'/addCourse',
+    name: 'addCourse',
+    component: () => import(/* webpackChunkName: "addCourse" */ '../components/addModal.vue')
+  },
+  {
+    path:'/editCourse',
+    name: 'editCourse',
+    component: () => import(/* webpackChunkName: "editCourse" */ '../components/editModal.vue')
+  },
+  {
+    path:'/delCourse',
+    name: 'delCourse',
+    component: () => import(/* webpackChunkName: "delCourse" */ '../components/delModal.vue')
   }
   
 ]
