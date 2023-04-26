@@ -15,6 +15,7 @@
       </div>
       <div class="modal-body text-secondary">
         ¿Estas seguro(a) que deseas salir de la sesión?
+        <p>{{ $store.state.usuarioConectado }}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

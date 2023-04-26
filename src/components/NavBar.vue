@@ -12,11 +12,11 @@
                     <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                         
                         <router-link class="nav-link px-3" to="/homeView">Cursos</router-link>
-                        
-                        <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
-                        
+                        <div v-if="$store.state.usuarioConectado === 'administrador@a.com'">
+                            <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
+                        </div>
                         <logout></logout>
-                        <!-- <p class="mb-0">{{usuarioConectado}}</p> -->
+                        <p class="mb-0">{{$store.state.usuarioConectado}}</p>
                     </ul>
                 </nav>
             </div>

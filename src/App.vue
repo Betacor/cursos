@@ -2,12 +2,10 @@
   <router-view/>
 </template>
 <script>
-import logout from '@/components/LogoutPage.vue';
+
 
   export default {
-
     components:{
-      logout
     }
   }
 </script>
