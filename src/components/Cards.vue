@@ -1,7 +1,7 @@
 <template>
   <h1>Cursos</h1>
   <div class="container">
-    <div class="row g-3">
+    <div class="row g-3 justify-content-center">
       <div v-for="item in cursos" :key="item" class="card col-md-3" style="width: 18rem;">
         <img class="card-img-top" :src="item.img" alt="Card image cap">
         <div class="card-body">
@@ -28,7 +28,7 @@ methods: {
     ...mapMutations(['extraer']),
     
 },
-mounted(){
+created(){
 
     if(!this.loaded){
         this.extraer();
