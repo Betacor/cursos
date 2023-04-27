@@ -6,6 +6,7 @@ import { db } from "@/services/auth.service";
 export default createStore({
   state: {
     cursos:[],
+    newCurso:[],
     nombre:'',
     usuarioConectado: ''
   },
@@ -21,16 +22,21 @@ export default createStore({
       //limpia el usuario conectado
     },
     async extraer(state) {
-			const querySnapshot = await getDocs(collection(db, "cursos"));
-			console.log(querySnapshot);
-			state.cursos = querySnapshot.docs.map(doc => doc.data());
-			console.log(state.cursos);
-		},
+      state.cursos = [];
+      const querySnapshot = await getDocs(collection(db, "cursos"));
+      querySnapshot.forEach((doc) => {
+        state.cursos.push(Object.assign({}, doc.data(), { id: doc.id }));
+      });
+    },
 		mostrarCurso(){
 			state.cursos.forEach((element)=>{
 			console.log(element)
 			})
-		}
+		},
+    setNewCurso(state, data){
+      console.log(data.id)
+      state.newCurso = data;
+    }
   },
   actions: {
   },

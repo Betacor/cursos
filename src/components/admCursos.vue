@@ -13,11 +13,11 @@
       <th scope="col">Estado</th>
       <th scope="col">Imagen</th>
       <th scope="col">Edición</th>
-      <th><button class="btn btn-success" @click="this.$router.push('/addCourse')">Agregar</button></th>
+      <th><addModal></addModal></th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for="data in cursos" :key="data.codigo">
+    <tr v-for="data in cursos" :key="data.id">
       <th scope="row">{{ data.id }}</th>
       <td>{{ data.nombre}}</td>
       <td>{{ data.precio }}</td>
@@ -27,17 +27,60 @@
       <td>{{ data.inscritos }}</td>
       <td>{{ data.estado }}</td>
       <td>{{ data.img }}</td>
-      <td><i><button class="btn btn-warning">Editar</button></i><button class="btn btn-danger">Eliminar</button></td>
+      <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><button class="btn btn-danger">Eliminar</button></td>
     </tr>
   </tbody>
 </table>
+
+<!-- Modales Inicio -->
+
+
 <Footer/>
 </template>
 
 <script>
+
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
+import { db } from "@/services/auth.service";
+import { mapState, mapMutations } from "vuex";
+import NavBar from './NavBar.vue';
+import addModal from './addModal.vue'
+import editModal from './editModal.vue'
+
+export default {
+  data(){
+      return{
+         
+      }
+  },
+  components:{
+    NavBar,
+    addModal,
+    editModal
+  },
+  computed:{
+    ...mapState(['cursos'])
+  },
+  methods: {
+    ...mapMutations(['extraer']),
+    ...mapMutations(['setNewCurso'])
+    
+  },
+  created(){
+
+      if(!this.loaded){
+          this.extraer();
+      }
+  }
+}
+
+
+
+/*
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/services/auth.service";
 import NavBar from './NavBar.vue';
+import addModal from './addModal.vue';
 
 export default {
   data() {
@@ -47,7 +90,8 @@ export default {
     };
   },
   components:{
-    NavBar
+    NavBar,
+    addModal
   },
   mounted(){
     this.extraer();
@@ -64,7 +108,7 @@ export default {
             })
         }
   }
-}
+}*/
 </script>
 
 <style>
