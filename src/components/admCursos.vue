@@ -63,8 +63,8 @@ export default {
   },
   methods: {
     ...mapMutations(['extraer']),
-    ...mapMutations(['setNewCurso'])
-    
+    ...mapMutations(['setNewCurso']),
+    ...mapMutations(['setDelCurso'])
   },
   created(){
 
