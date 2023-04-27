@@ -27,7 +27,7 @@
       <td>{{ data.inscritos }}</td>
       <td>{{ data.estado }}</td>
       <td>{{ data.img }}</td>
-      <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><button class="btn btn-danger">Eliminar</button></td>
+      <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><delModal @deleteCurso="setDelCurso(data)">Eliminar</delModal></td>
     </tr>
   </tbody>
 </table>
@@ -64,6 +64,46 @@ export default {
   methods: {
     ...mapMutations(['extraer']),
     ...mapMutations(['setNewCurso'])
+    
+  },
+  created(){
+
+      if(!this.loaded){
+          this.extraer();
+      }
+  }
+}
+
+
+
+/*
+
+import { mapState, mapMutations } from "vuex";
+import NavBar from './NavBar.vue';
+import addModal from './addModal.vue'
+import editModal from './editModal.vue'
+import delModal from './delModal.vue'
+
+export default {
+  data(){
+      return{
+         
+      }
+  },
+  components:{
+    NavBar,
+    addModal,
+    editModal,
+    delModal
+  },
+  computed:{
+    ...mapState(['cursos'])
+  },
+  methods: {
+    ...mapMutations(['extraer']),
+    ...mapMutations(['setNewCurso']),
+    ...mapMutations(['setDelCurso'])
+
     
   },
   created(){

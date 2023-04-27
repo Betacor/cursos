@@ -9,7 +9,7 @@ export default createStore({
     newCurso:[],
     nombre:'',
     usuarioConectado: '',
-    usuarioEstado:''
+    delCurso:[]
   },
   getters: {
     
@@ -42,6 +42,9 @@ export default createStore({
     setNewCurso(state, data){
       console.log(data.id)
       state.newCurso = data;
+    },
+    setDelCurso(state,data){
+      state.delCurso = data;
     }
   },
   actions: {

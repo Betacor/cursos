@@ -65,7 +65,7 @@
 <script>
 import { mapState } from 'vuex';
 import { db } from '@/services/auth.service'
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 export default {
   computed:{
