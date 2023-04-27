@@ -29,7 +29,7 @@
       <td>{{ data.estado }}</td>
       <td>{{ data.img }}</td>
       <!-- @click="editarCurso()" @click="dekCurso()"-->
-      <td><i><button type="button" class="btn btn-primary" data-bs-toggle="modal" @click="setEdit(data)" data-bs-target="#editar">editar</button></i><button  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Eliminar</button></td>
+      <td><i><button type="button" class="btn btn-primary" data-bs-toggle="modal" @click="setEdit(data)" data-bs-target="#editar">editar</button></i><button  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" @click="setDel(data)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>
@@ -166,10 +166,11 @@
         </div>
         <div class="modal-body">
         <h2>Esta seguro/a de eliminar este curso?</h2>
+        <h4>Curso: {{ documentDel.nombre }}</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="deleteCourse()">Eliminar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="deleteCourse">Eliminar</button>
         </div>
       </div>
     </div>
@@ -196,8 +197,7 @@ export default {
           inscritos: 0,
           imagen:'',
           editdata: [],
-          delId:'',
-          documents:[]
+          documentDel:[]
       }
   },
   computed: {
@@ -207,12 +207,6 @@ export default {
         newNumber = this.$store.state.courses.length + 1
         this.newId = this.newId.slice(0, -1) + newNumber;
         return this.newId;
-      },
-      getId(){
-        let newNumber = 0;
-        newNumber = this.$store.state.courses.length + 1
-        this.editId= newNumber
-        return this.editId;
       }
   },
   methods: {
@@ -227,19 +221,40 @@ export default {
     });
     this.$store.state.loaded = true;
     },
-    async deleteCourse() {
-          const querySnapshot = await getDocs(collection(db, "cursos"));
-          const cursos = querySnapshot.filter((doc) => doc.id === id);
-          const index = cursos.indexOf(cursos[0]);
-          state.cursos.splice(index, 1);},
-
+    async deleteCourse(){
+    await deleteDoc(doc(db, "cursos", this.documentDel.id))
+    .then(() => {
+      //promesa ejecutada correctamente
+      //mensaje de exito del registro
+        Swal.fire({
+        title: 'Curso eliminado!',
+        text: 'exitoso!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        showCancelButton: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //volvemos a cargar los cursos de la bd
+          this.extraer();
+        }
+      });
+      })
+      .catch((error) => {
+      // Ha ocurrido un error al insertar el documento
+      console.error("Error al insertar el documento:", error);
+      });
+    },
     setEdit(data){
-     
-        console.log(data.nombre + data.descripcion);
-      
+      this.newCurso=data
+    },
+    setDel(data){
+        this.documentDel=data;
     },
     async insertar(){
-      //metodo de insersion 
+      //metodo de insersion
       await setDoc(doc(db, "cursos", this.newId), {
         nombre: this.nombre,
         precio: this.precio,
