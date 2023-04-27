@@ -12,7 +12,7 @@ export default createStore({
     usuarioEstado:''
   },
   getters: {
-
+    
   },
   mutations: {
     cargarUsuario(state, email){
