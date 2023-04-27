@@ -27,7 +27,7 @@
       <td>{{ data.inscritos }}</td>
       <td>{{ data.estado }}</td>
       <td>{{ data.img }}</td>
-      <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><button class="btn btn-danger">Eliminar</button></td>
+      <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><delModal @deleteCurso="setDelCurso(data)">Eliminar</delModal></td>
     </tr>
   </tbody>
 </table>
@@ -40,12 +40,11 @@
 
 <script>
 
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
-import { db } from "@/services/auth.service";
 import { mapState, mapMutations } from "vuex";
 import NavBar from './NavBar.vue';
 import addModal from './addModal.vue'
 import editModal from './editModal.vue'
+import delModal from './delModal.vue'
 
 export default {
   data(){
@@ -56,14 +55,17 @@ export default {
   components:{
     NavBar,
     addModal,
-    editModal
+    editModal,
+    delModal
   },
   computed:{
     ...mapState(['cursos'])
   },
   methods: {
     ...mapMutations(['extraer']),
-    ...mapMutations(['setNewCurso'])
+    ...mapMutations(['setNewCurso']),
+    ...mapMutations(['setDelCurso'])
+
     
   },
   created(){
