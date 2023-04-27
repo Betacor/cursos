@@ -8,18 +8,24 @@ export default createStore({
     cursos:[],
     newCurso:[],
     nombre:'',
-    usuarioConectado: ''
+    usuarioConectado: '',
+    usuarioEstado:''
   },
   getters: {
+
   },
   mutations: {
     cargarUsuario(state, email){
       state.usuarioConectado = email;
-      console.log(state.usuarioConectado);
+      localStorage.setItem('usuario', JSON.stringify(state.usuarioConectado));
     },
     limpiarUsuario(state){
       state.usuarioConectado = '';
+      localStorage.setItem('usuario', JSON.stringify(state.usuarioConectado));
       //limpia el usuario conectado
+    },
+    getUsuario(state){
+      state.usuarioEstado = JSON.parse(localStorage.getItem('usuario'));
     },
     async extraer(state) {
       state.cursos = [];
