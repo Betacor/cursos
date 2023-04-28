@@ -1,14 +1,18 @@
 <template>
-  <h1>Cursos</h1>
+  <h1 class="title">Cursos E-Learning</h1>
   <div class="container">
     <div class="row g-3 justify-content-center">
       <div v-for="item in cursos" :key="item" class="card col-md-3" style="width: 18rem;">
         <img class="card-img-top" :src="item.img" alt="Card image cap">
         <div class="card-body">
           <h2 class="card-title">Curso {{ item.nombre }}</h2>
-          <p class="card-text">Precio: ${{ parseInt(item.precio).toLocaleString('es') }}</p>
-          <p class="card-text">Duracion:{{ item.duracion }}</p>
-          <p class="card-text">Cupos:{{ item.cupos }}</p>
+          <div class="info-curso">
+            <p class="card-text">Precio: ${{ parseInt(item.precio).toLocaleString('es') }}</p>
+            <p class="card-text">Duracion:{{ item.duracion }}</p>
+            <p class="card-text">Cupos:{{ item.cupos }}</p>
+            <p class="card-text">Inscritos:{{ item.inscritos }}</p>
+          </div>
+
           <a href="#" class="btn btn-primary">Inscribir Curso</a>
         </div>
       </div>
@@ -49,7 +53,7 @@ created(){
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	border: 1px solid rgba(226, 223, 223, 0.488);
+	/* border: 1px solid rgba(226, 223, 223, 0.488); */
 
 }
 
@@ -67,13 +71,36 @@ h2 {
 }
 
 .btn {
-	background-color: rgb(39, 39, 39) !important;
-	border: 0 !important;
+	background-color: #ffffff !important;
+	border: solid 1px #ed8e1e !important ;
+    color: #ed8e1e;
 }
 
 .btn:hover {
 	cursor: pointer;
-	color: #00f3ae;
-	background-color: rgb(48, 48, 48) !important;
+	color: #ffffff;
+	background-color: #ed8e1e !important;
+}
+
+.title {
+    font-size: 1.5em;
+    margin: 1em;
+    /* text-align: left; */
+    font-weight: bold;
+    color: rgb(114, 114, 114);
+
+}
+
+.card-text{
+    margin: 0;
+    text-align: left;
+}
+
+.info-curso{
+    padding-bottom: 1em;
+}
+
+.card-title{
+    font-size: 20px;
 }
 </style>
