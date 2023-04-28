@@ -1,6 +1,10 @@
 <template>
-  <NavBar/>
-  <table class="table table-striped">
+  <NavBar/> 
+
+  <h2 class="title">Administrador de Cursos</h2>
+
+  <p class="add-button"><addModal></addModal></p>
+  <table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th scope="col">Codigo</th>
@@ -13,7 +17,6 @@
       <th scope="col">Estado</th>
       <th scope="col">Imagen</th>
       <th scope="col">Edición</th>
-      <th><addModal></addModal></th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +29,7 @@
       <td>{{ data.cupos}}</td>
       <td>{{ data.inscritos }}</td>
       <td>{{ data.estado }}</td>
-      <td>{{ data.img }}</td>
+      <td class="image-text">{{ data.img }}</td>
       <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><delModal @deleteCurso="setDelCurso(data)">Eliminar</delModal></td>
     </tr>
   </tbody>
@@ -115,4 +118,30 @@ export default {
 
 <style>
 
+table {
+  font-size: 14px;
+  /* margin: 0 10px; */
+}
+
+th,td {
+  padding: 0.5rem;
+}
+
+.image-text{
+    font-size: 12px;
+}
+
+.add-button{
+    text-align: left;
+    margin: 1em;
+}
+
+.title {
+    font-size: 1.5em;
+    margin: 1em;
+    /* text-align: left; */
+    font-weight: bold;
+    color: rgb(114, 114, 114);
+
+}
 </style>
