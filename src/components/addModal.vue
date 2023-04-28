@@ -65,8 +65,8 @@
 
 <script>
 import { db } from '@/services/auth.service'
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
-import { mapState,mapMutations } from "vuex";
+import { doc, setDoc } from "firebase/firestore";
+import { mapMutations } from "vuex";
 
 export default {
   data () {
@@ -120,7 +120,7 @@ export default {
 
         if (result.isConfirmed) {
           //volvemos a cargar los cursos de la bd
-          this.extraer();
+          this.$store.commit('extraer');
         }
       });
       })

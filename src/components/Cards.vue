@@ -33,7 +33,6 @@ created(){
     if(!this.loaded){
         this.extraer();
     }
-
     }
 }
 </script>

@@ -19,14 +19,10 @@
   <tbody>
     <tr v-for="data in cursos" :key="data.id">
       <th scope="row">{{ data.id }}</th>
-      <td>{{ data.nombre}}</td>
-      <td>{{ data.precio }}</td>
-      <td>{{ data.duracion }}</td>
-      <td>{{ data.descripcion }}</td>
-      <td>{{ data.cupos}}</td>
-      <td>{{ data.inscritos }}</td>
+      <td>{{ data.nombre}}</td>null
+index.js:41 null
       <td>{{ data.estado }}</td>
-      <td>{{ data.img }}</td>
+      <td class="data-img">{{ data.img }}</td>
       <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><delModal @deleteCurso="setDelCurso(data)">Eliminar</delModal></td>
     </tr>
   </tbody>
@@ -35,50 +31,13 @@
 <!-- Modales Inicio -->
 
 
-<Footer/>
+<piePagina></piePagina>
 </template>
 
 <script>
 
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
-import { db } from "@/services/auth.service";
 import { mapState, mapMutations } from "vuex";
-import NavBar from './NavBar.vue';
-import addModal from './addModal.vue'
-import editModal from './editModal.vue'
-
-export default {
-  data(){
-      return{
-         
-      }
-  },
-  components:{
-    NavBar,
-    addModal,
-    editModal
-  },
-  computed:{
-    ...mapState(['cursos'])
-  },
-  methods: {
-    ...mapMutations(['extraer']),
-    ...mapMutations(['setNewCurso']),
-    ...mapMutations(['setDelCurso'])
-  },
-  created(){
-
-      if(!this.loaded){
-          this.extraer();
-      }
-  }
-}
-
-
-
-/*
-
-import { mapState, mapMutations } from "vuex";
+import piePagina from './Footer.vue'
 import NavBar from './NavBar.vue';
 import addModal from './addModal.vue'
 import editModal from './editModal.vue'
@@ -94,7 +53,8 @@ export default {
     NavBar,
     addModal,
     editModal,
-    delModal
+    delModal,
+    piePagina
   },
   computed:{
     ...mapState(['cursos'])
@@ -114,43 +74,10 @@ export default {
   }
 }
 
-
-
-/*
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/services/auth.service";
-import NavBar from './NavBar.vue';
-import addModal from './addModal.vue';
-
-export default {
-  data() {
-    return {
-        nombre:'',
-        cursos: []
-    };
-  },
-  components:{
-    NavBar,
-    addModal
-  },
-  mounted(){
-    this.extraer();
-  },
-  methods: {
-        async extraer() {
-        const querySnapshot = await getDocs(collection(db, "cursos"));
-        querySnapshot.forEach((doc) => {
-            this.cursos.push(doc.data());
-        });
-        },
-        mostrarCurso(){
-            this.cursos.forEach((element)=>{
-            })
-        }
-  }
-}*/
 </script>
 
 <style>
-
+.data-img{
+  width: 10rem;
+}
 </style>
