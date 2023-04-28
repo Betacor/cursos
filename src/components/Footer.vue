@@ -1,8 +1,6 @@
 <template>
     <footer>
         <img src="../assets/logoo.png" alt="" width="100">
-     
-        <!-- <img src="../assets/logo.png" width="200"  alt=""> -->
     </footer>
 </template>
     
