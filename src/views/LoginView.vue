@@ -5,16 +5,16 @@
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Ingrese Email</label>
                   <input  v-model.trim="loginForm.email" type="email" :class="[stylingMail, 'form-control']" @blur="cambiaEstilo('mail')" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">nunca compartas tu correo electronico con otra persona.</div>
+                  <div id="emailHelp" class="form-text">Nunca compartas tu correo electronico con otra persona.</div>
               </div>
               <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                   <input v-model.trim="loginForm.password" type="password" :class="[stylingPass, 'form-control']"  @blur="cambiaEstilo('pass')" id="exampleInputPassword1">
               </div>
-                <button type="submit" class="btn btn-primary  w-50">Login</button>
+                <button type="submit" class="btn-login w-50">Login</button>
                 <div class="d-flex flex-column align-items-center text-center mt-3">
-                  <div id="registrarNuevo" class="form-text w-50">si no tienes cuenta, registra tu cuenta.</div>
-                  <button type="button" @click="goToRegister" class="btn btn-success w-50">Registrar Usuario</button>
+                 <button type="button" @click="goToRegister" class="btn-registrar w-50">Registrar Usuario</button>
+                 <div id="registrarNuevo" class="form-text w-50">Si no tienes cuenta, registra tu cuenta.</div>
                 </div>
                 <div v-if="manage">
                  <p class="text-danger">{{ error }}</p>
@@ -194,9 +194,70 @@
       height: 100vh;
       background: rgb(240,163,63);
       background: linear-gradient(90deg, rgba(240,163,63,1) 0%, rgba(251,255,155,1) 62%, rgba(247,238,180,1) 100%);
-    }
+    } 
+    .btn-login {
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+  .btn-registrar{
+    background: linear-gradient(to bottom right, #4b8d4f, #157f1e);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+.btn-login:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.btn-login:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.btn-registrar:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.btn-registrar:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+    
     .error {
-        box-shadow: inset 0 0 10px rgba(224, 39, 39, 0.5);
+      
+    box-shadow: inset 0 0 10px rgba(224, 39, 39, 0.5);
       }
     .success{
         box-shadow: inset 0 0 5px rgba(105, 247, 105, 0.5);
