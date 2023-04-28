@@ -22,8 +22,12 @@
   <tbody>
     <tr v-for="data in cursos" :key="data.id">
       <th scope="row">{{ data.id }}</th>
-      <td>{{ data.nombre}}</td>null
-index.js:41 null
+      <td>{{ data.nombre}}</td>
+      <td>{{ data.precio }}</td>
+      <td>{{ data.duracion }}</td>
+      <td>{{ data.descripcion }}</td>
+      <td>{{ data.cupos}}</td>
+      <td>{{ data.inscritos }}</td>
       <td>{{ data.estado }}</td>
       <td class="image-text">{{ data.img }}</td>
       <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><delModal @deleteCurso="setDelCurso(data)">Eliminar</delModal></td>
