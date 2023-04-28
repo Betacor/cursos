@@ -1,5 +1,9 @@
 <template>
-  <i><button  @click="emitClickEvent" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar">editar</button></i>
+  <!-- <i><button  @click="emitClickEvent" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar">editar</button></i> -->
+
+  <button @click="emitClickEvent" type="button" class="btn btn-icon" data-bs-toggle="modal" data-bs-target="#editar">
+    <i class="fas fa-pen-to-square"></i></button>
+
    <!-- MODAL Modificar REGISTRO NUEVO-->
    <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editar" aria-hidden="true">
     <div class="modal-dialog">
@@ -117,5 +121,9 @@ export default {
 </script>
 
 <style>
+
+.fas {
+    font-weight: normal;
+}
 
 </style>

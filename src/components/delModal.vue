@@ -1,7 +1,15 @@
 <template>
   <!-- Button trigger modal -->
-<i><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" @click="emitClick">
-  Eliminar</button></i>
+<!-- <i><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete" @click="emitClick">
+  Eliminar</button></i> -->
+
+  <!-- <button @click="emitClick" type="button" class="btn btn-danger btn-icon" data-bs-toggle="modal" data-bs-target="#delete">
+  <i class="fa fa-trash"></i>
+	</button> -->
+
+    <button @click="emitClick" type="button" class="btn btn-icon" data-bs-toggle="modal" data-bs-target="#delete">
+  <i class="fa fa-trash"></i>
+	</button>
 
 <!-- Modal -->
 <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="delete" aria-hidden="true">
@@ -68,5 +76,18 @@ export default {
 </script>
 
 <style>
+
+.btn {
+    padding: 0.3em;
+}
+
+/* .fa{
+    font-weight: normal;
+} */
+
+/* .icon-trash {
+  font-size: 14px;
+  font-weight: normal;
+} */
 
 </style>
