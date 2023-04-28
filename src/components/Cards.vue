@@ -1,5 +1,10 @@
 <template>
   <h1 class="title">Cursos E-Learning</h1>
+
+	<div v-if="cargando" id="carga">
+		<pulse-loader :loading="cargando" :color="color" :size="size"></pulse-loader>
+	</div>
+
   <div class="container">
     <div class="row g-3 justify-content-center">
       <div v-for="item in cursos" :key="item" class="card col-md-3" style="width: 18rem;">
@@ -23,22 +28,52 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+
 export default {
+
+	data() {
+		return {
+			cargando: false,
+		}
+	},
+components: {
+	PulseLoader,
+},
 computed: {
     ...mapState(['cursos']),
-    ...mapState(['nombre'])
+    ...mapState(['nombre']),
+		loaded() {
+      return this.cursos.length > 0;
+    },
 },
-methods: {
-    ...mapMutations(['extraer']),
-    
-},
-created(){
+watch: {
+    loaded(value) {
+      this.cargando = !value;
+    },
+  },
+	methods: {
+			...mapMutations(['extraer']),
+			async extraerCursos() {
+			try {
+				this.cargando = true;
+				await setTimeout(() => {
+					let response = this.cursos;
+					this.cursos = response;
+					this.cargando = false;
+				}, 1000);
 
-    if(!this.loaded){
-        this.extraer();
-    }
-    }
+			} catch (error) {
+				this.errorMessage = error;
+			}
+		},
+	},
+	created() {
+		this.extraerCursos();
+	},
 }
+    
+
 </script>
 
 <style scoped>
