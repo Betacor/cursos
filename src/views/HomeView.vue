@@ -10,6 +10,7 @@
   import NavBar from '../components/NavBar.vue'
   import Footer from '../components/Footer.vue'
   import Cards from '../components/Cards.vue'
+  import { auth } from "@/services/auth.service";
   
   export default {
   name: "HomeView",
@@ -17,6 +18,10 @@
     NavBar,
     Footer,
     Cards
+  },
+  created(){
+    const user = auth.currentUser;
+    console.log(user?.email);
   }
   }
   </script>

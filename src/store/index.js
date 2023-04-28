@@ -6,31 +6,46 @@ import { db } from "@/services/auth.service";
 export default createStore({
   state: {
     cursos:[],
+    newCurso:[],
     nombre:'',
-    usuarioConectado: ''
+    usuarioConectado: '',
+    delCurso:[]
   },
   getters: {
+    
   },
   mutations: {
     cargarUsuario(state, email){
       state.usuarioConectado = email;
-      console.log(state.usuarioConectado);
+      localStorage.setItem('usuario', JSON.stringify(state.usuarioConectado));
     },
     limpiarUsuario(state){
       state.usuarioConectado = '';
+      localStorage.setItem('usuario', JSON.stringify(state.usuarioConectado));
       //limpia el usuario conectado
     },
+    getUsuario(state){
+      state.usuarioEstado = JSON.parse(localStorage.getItem('usuario'));
+    },
     async extraer(state) {
-			const querySnapshot = await getDocs(collection(db, "cursos"));
-			console.log(querySnapshot);
-			state.cursos = querySnapshot.docs.map(doc => doc.data());
-			console.log(state.cursos);
-		},
+      state.cursos = [];
+      const querySnapshot = await getDocs(collection(db, "cursos"));
+      querySnapshot.forEach((doc) => {
+        state.cursos.push(Object.assign({}, doc.data(), { id: doc.id }));
+      });
+    },
 		mostrarCurso(){
 			state.cursos.forEach((element)=>{
 			console.log(element)
 			})
-		}
+		},
+    setNewCurso(state, data){
+      console.log(data.id)
+      state.newCurso = data;
+    },
+    setDelCurso(state,data){
+      state.delCurso = data;
+    }
   },
   actions: {
   },

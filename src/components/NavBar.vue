@@ -12,11 +12,11 @@
                     <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                         
                         <router-link class="nav-link px-3" to="/homeView">Cursos</router-link>
-                        
-                        <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
-                        
+                        <div v-if="$store.state.usuarioEstado === 'administrador@a.com'">
+                            <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
+                        </div>
                         <logout></logout>
-                        <!-- <p class="mb-0">{{usuarioConectado}}</p> -->
+                        <p class="mb-0">{{$store.state.usuarioEstado}}</p>
                     </ul>
                 </nav>
             </div>
@@ -28,15 +28,20 @@
     // import FormLogin from './FormLogin.vue';
     // import ShowCards from './ShowCards.vue';
     import logout from '@/components/LogoutPage.vue'
+    import { mapState, mapMutations } from "vuex";
 
     export default {
-        name: 'NavBar',
-        components:{
-            logout
-        }
-
-        }
-    
+            name: 'NavBar',
+            components:{
+                logout
+            },
+            methods:{
+                ...mapMutations(['getUsuario'])
+            },
+            mounted(){
+                this.getUsuario();
+            }
+    }
     </script>
     <style>
     

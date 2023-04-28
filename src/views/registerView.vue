@@ -1,14 +1,14 @@
 <template>
-  <div class="d-flex justify-content-center">
+  <div class="contenedor_formRegister">
       <form class="w-50" @submit.prevent="registerUser">
           <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Ingrese Email</label>
-              <input  v-model="registerForm.email" type="email" :class="[stylingMail, 'form-control']" @blur="cambiaEstilo('mail')" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input  v-model.trim="registerForm.email" type="email" :class="[stylingMail, 'form-control']" @blur="cambiaEstilo('mail')" id="exampleInputEmail1" aria-describedby="emailHelp">
               <div id="emailHelp" class="form-text">nunca compartas tu correo electronico con otra persona.</div>
           </div>
           <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-              <input v-model="registerForm.password" type="password" :class="[stylingPass, 'form-control']" @blur="cambiaEstilo('pass')" id="exampleInputPassword1">
+              <input v-model.trim="registerForm.password" type="password" :class="[stylingPass, 'form-control']" @blur="cambiaEstilo('pass')" id="exampleInputPassword1">
           </div>
           <button type="submit" class="btn btn-primary me-3">Registrar</button>
           <button type="button" @click="goBack" class="btn btn-danger ms-3">Volver</button>
@@ -78,7 +78,8 @@ methods: {
         console.log("Usuario registrado correctamente");
         this.error = false;
         this.msg = 'Usuario registrado correctamente';
-        router.push('/loginPage')
+        this.$store.state.estado === false;
+        router.push('/');
         // Aquí puedes redirigir al usuario a la página de inicio de sesión o hacer algo más
       })
       .catch((error) => {
@@ -86,7 +87,7 @@ methods: {
         this.manage = true;
         this.cambiaShadowMail = true;
         this.cambiaShadowPass = true;
-        this.error = 'ha ocurrido un problema'
+        this.msg = 'ha ocurrido un problema'
         console.log("Error al registrar usuario", error);
         // Aquí puedes mostrar un mensaje de error al usuario
       });
@@ -107,25 +108,38 @@ methods: {
       if(this.registerForm.password === ''){
       this.cambiaShadowPass = true;
       }else{
-      this.cambiaShadowPass = false
+      this.cambiaShadowPass = false;
       }
 
     }
   },
   goBack(){
-    router.push('/loginPage');
+    //cambio el estado para que no muestre el mensaje de logout 
+    console.log('en goback register  ' + this.$store.state.estado)
+    this.$store.state.estado = false;
+    console.log('en goback register 2 ' + this.$store.state.estado)
+    router.push('/');
   }
 }
 };
 </script>
 
 <style>
+.contenedor_formRegister{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(240,163,63);
+    background: linear-gradient(90deg, rgba(240,163,63,1) 0%, rgba(251,255,155,1) 62%, rgba(247,238,180,1) 100%);
+}
 .error {
     box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.5);
-  }
+}
 .success{
     box-shadow: inset 0 0 5px rgba(105, 247, 105, 0.5);
-  }
+}
 .msgDanger{
   color: rgba(255, 0, 0, 0.5);
 }

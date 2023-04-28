@@ -1,6 +1,6 @@
 <template>
 
-  <div class="d-flex justify-content-center">
+  <div class="contenedor_formLogin">
           <form class="w-50" @submit.prevent="login">
               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Ingrese Email</label>
@@ -16,11 +16,13 @@
                   <div id="registrarNuevo" class="form-text w-50">si no tienes cuenta, registra tu cuenta.</div>
                   <button type="button" @click="goToRegister" class="btn btn-success w-50">Registrar Usuario</button>
                 </div>
+                <div v-if="manage">
+                 <p class="text-danger">{{ error }}</p>
+                </div>
           </form>
+        
         </div>
-        <div v-if="manage">
-          <p class="text-danger">{{ error }}</p>
-        </div>
+
   </template>
   
   <script>
@@ -61,7 +63,6 @@
         if(this.loginForm.email === '' || this.loginForm.password === ''){
           this.manage = true;
           this.error = 'todos los campos son necesarios'
-          console.log(this.error)
         }else{
           this.manage = false;
           auth
@@ -122,7 +123,11 @@
     },
     //reenvio hacia el home
     redirectToHomePage() {
+     if(this.$store.state.usuarioConectado === 'administrador@a.com'){
+        this.$router.push('/admin');
+      }else{
         this.$router.push('/homeView');
+      }
     },
     redirectToLogin() {
         this.$router.push('/');
@@ -149,26 +154,21 @@
           }else{
           this.cambiaShadowPass = false
           }
-  
         }
-        
       },
-      async accessToken() {
-        const token = await auth.currentUser?.getIdToken();
-        console.log(token);
-      }
     },
-    mounted() {
+    created() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         // Usuario ha iniciado sesión
-        console.log("El usuario ha iniciado sesión:", user);
+        console.log("El usuario ha iniciado sesión:", user.email);
         // Cargar información del usuario en tu store o en tus datos locales
         this.$store.commit('cargarUsuario', user.email);
         this.$store.state.estado = false;
         this.showAlert('login');
-       
       }else {
+        console.log(this.$store.state.estado);
+        //verifica que efectivamente sea un logout 
         if(this.$store.state.estado === true){
           // Usuario ha cerrado sesión
           console.log("El usuario ha cerrado sesión");
@@ -186,8 +186,17 @@
   </script>
   
   <style>
+    .contenedor_formLogin{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      background: rgb(240,163,63);
+      background: linear-gradient(90deg, rgba(240,163,63,1) 0%, rgba(251,255,155,1) 62%, rgba(247,238,180,1) 100%);
+    }
     .error {
-        box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.5);
+        box-shadow: inset 0 0 10px rgba(224, 39, 39, 0.5);
       }
     .success{
         box-shadow: inset 0 0 5px rgba(105, 247, 105, 0.5);

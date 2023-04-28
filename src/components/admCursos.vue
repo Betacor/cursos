@@ -1,6 +1,10 @@
 <template>
-  <NavBar/>
-  <table class="table table-striped">
+  <NavBar/> 
+
+  <h2 class="title">Administrador de Cursos</h2>
+
+  <p class="add-button"><addModal></addModal></p>
+  <table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th scope="col">Codigo</th>
@@ -13,11 +17,10 @@
       <th scope="col">Estado</th>
       <th scope="col">Imagen</th>
       <th scope="col">Edición</th>
-      <th><button class="btn btn-success" @click="this.$router.push('/addCourse')">Agregar</button></th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for="data in cursos" :key="data.codigo">
+    <tr v-for="data in cursos" :key="data.id">
       <th scope="row">{{ data.id }}</th>
       <td>{{ data.nombre}}</td>
       <td>{{ data.precio }}</td>
@@ -26,47 +29,86 @@
       <td>{{ data.cupos}}</td>
       <td>{{ data.inscritos }}</td>
       <td>{{ data.estado }}</td>
-      <td>{{ data.img }}</td>
-      <td><i><button class="btn btn-warning">Editar</button></i><button class="btn btn-danger">Eliminar</button></td>
+      <td class="image-text">{{ data.img }}</td>
+      <td><editModal @pruebaCursos="setNewCurso(data)"></editModal><delModal @deleteCurso="setDelCurso(data)">Eliminar</delModal></td>
     </tr>
   </tbody>
 </table>
-<Footer/>
+
+<!-- Modales Inicio -->
+
+
+<piePagina></piePagina>
 </template>
 
 <script>
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/services/auth.service";
+
+import { mapState, mapMutations } from "vuex";
+import piePagina from './Footer.vue'
 import NavBar from './NavBar.vue';
+import addModal from './addModal.vue'
+import editModal from './editModal.vue'
+import delModal from './delModal.vue'
 
 export default {
-  data() {
-    return {
-        nombre:'',
-        cursos: []
-    };
+  data(){
+      return{
+         
+      }
   },
   components:{
-    NavBar
+    NavBar,
+    addModal,
+    editModal,
+    delModal,
+    piePagina
   },
-  mounted(){
-    this.extraer();
+  computed:{
+    ...mapState(['cursos'])
   },
   methods: {
-        async extraer() {
-        const querySnapshot = await getDocs(collection(db, "cursos"));
-        querySnapshot.forEach((doc) => {
-            this.cursos.push(doc.data());
-        });
-        },
-        mostrarCurso(){
-            this.cursos.forEach((element)=>{
-            })
-        }
+    ...mapMutations(['extraer']),
+    ...mapMutations(['setNewCurso']),
+    ...mapMutations(['setDelCurso'])
+
+    
+  },
+  created(){
+
+      if(!this.loaded){
+          this.extraer();
+      }
   }
 }
+
 </script>
 
 <style>
 
+table {
+  font-size: 14px;
+  /* margin: 0 10px; */
+}
+
+th,td {
+  padding: 0.5rem;
+}
+
+.image-text{
+    font-size: 12px;
+}
+
+.add-button{
+    text-align: left;
+    margin: 1em;
+}
+
+.title {
+    font-size: 1.5em;
+    margin: 1em;
+    /* text-align: left; */
+    font-weight: bold;
+    color: rgb(114, 114, 114);
+
+}
 </style>
