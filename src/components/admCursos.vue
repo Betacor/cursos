@@ -38,12 +38,13 @@
 <!-- Modales Inicio -->
 
 
-<Footer/>
+<piePagina></piePagina>
 </template>
 
 <script>
 
 import { mapState, mapMutations } from "vuex";
+import piePagina from './Footer.vue'
 import NavBar from './NavBar.vue';
 import addModal from './addModal.vue'
 import editModal from './editModal.vue'
@@ -59,7 +60,8 @@ export default {
     NavBar,
     addModal,
     editModal,
-    delModal
+    delModal,
+    piePagina
   },
   computed:{
     ...mapState(['cursos'])
@@ -79,41 +81,6 @@ export default {
   }
 }
 
-
-
-/*
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/services/auth.service";
-import NavBar from './NavBar.vue';
-import addModal from './addModal.vue';
-
-export default {
-  data() {
-    return {
-        nombre:'',
-        cursos: []
-    };
-  },
-  components:{
-    NavBar,
-    addModal
-  },
-  mounted(){
-    this.extraer();
-  },
-  methods: {
-        async extraer() {
-        const querySnapshot = await getDocs(collection(db, "cursos"));
-        querySnapshot.forEach((doc) => {
-            this.cursos.push(doc.data());
-        });
-        },
-        mostrarCurso(){
-            this.cursos.forEach((element)=>{
-            })
-        }
-  }
-}*/
 </script>
 
 <style>

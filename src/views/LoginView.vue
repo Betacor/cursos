@@ -123,12 +123,11 @@
     },
     //reenvio hacia el home
     redirectToHomePage() {
-      if(this.$store.state.usuarioConectado === 'administrador@a.com'){
+     if(this.$store.state.usuarioConectado === 'administrador@a.com'){
         this.$router.push('/admin');
       }else{
         this.$router.push('/homeView');
       }
-        
     },
     redirectToLogin() {
         this.$router.push('/');
@@ -157,21 +156,16 @@
           }
         }
       },
-      async accessToken() {
-        const token = await auth.currentUser?.getIdToken();
-        console.log(token);
-      }
     },
-    mounted() {
+    created() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         // Usuario ha iniciado sesión
-        console.log("El usuario ha iniciado sesión:", user);
+        console.log("El usuario ha iniciado sesión:", user.email);
         // Cargar información del usuario en tu store o en tus datos locales
         this.$store.commit('cargarUsuario', user.email);
         this.$store.state.estado = false;
         this.showAlert('login');
-       
       }else {
         console.log(this.$store.state.estado);
         //verifica que efectivamente sea un logout 
