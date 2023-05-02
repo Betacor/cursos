@@ -37,6 +37,7 @@ const routes = [
         console.log('no hay usuario');
         next({ name: "loginPage" });
       } else if (usuario=== "administrador@a.com") {
+
         console.log('usuario administrador');
         // si el correo electrónico del usuario actual coincide con el correo del administrador permitir el acceso
         next();
