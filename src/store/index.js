@@ -9,6 +9,7 @@ export default createStore({
     newCurso:[],
     nombre:'',
     usuarioConectado: '',
+    usuarioEstado:'',
     delCurso:[]
   },
   getters: {

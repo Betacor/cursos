@@ -157,7 +157,8 @@
         }
       },
     },
-    created() {
+    created(){
+
     auth.onAuthStateChanged((user) => {
       if (user) {
         // Usuario ha iniciado sesión
