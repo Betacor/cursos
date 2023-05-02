@@ -11,7 +11,7 @@
                 <nav>
                     <ul id="list-contenedor" class="d-flex justify-content-around align-items-center">
                         <router-link class="nav-link px-3" to="/homeView">Cursos</router-link>
-                         <div v-if="$store.state.usuarioEstado === 'administrador@a.com'"> -->
+                         <div v-if="$store.state.usuarioEstado === 'administrador@a.com'">
                             <router-link class="nav-link px-3" to="/admin">Administrar</router-link>
                          </div>
                         <logout></logout>
