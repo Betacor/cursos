@@ -3,6 +3,8 @@ import { auth } from "@/services/auth.service";
 import homeView from '../views/HomeView.vue'
 import registerView from '../views/registerView.vue'
 import loginPage from '../views/LoginView.vue'
+import store from '@/store'
+
 
 const routes = [
   {
@@ -27,13 +29,14 @@ const routes = [
     path:'/admin',
     name: 'admin',
     beforeEnter: (to, from, next) => {
-      const user = auth.currentUser;// obtener el usuario actual de firebase
-      console.log(user?.email);
-      if (!user) {
+      //const user = auth.currentUser;// obtener el usuario actual de firebase
+      const usuario = store.state.usuarioConectado
+
+      if (usuario === '') {
         // si no hay un usuario actual, redirigir a la página de inicio de sesión
         console.log('no hay usuario');
         next({ name: "loginPage" });
-      } else if (user.email === "administrador@a.com") {
+      } else if (usuario=== "administrador@a.com") {
         console.log('usuario administrador');
         // si el correo electrónico del usuario actual coincide con el correo del administrador permitir el acceso
         next();
